@@ -11,15 +11,19 @@ namespace Learning.DataStructures.ArraysAndStrings
         {
             if (String.IsNullOrEmpty(value)) return string.Empty;
 
-            Dictionary<char, int> list = new Dictionary<char, int>();
+            Dictionary<char, int> dict = new Dictionary<char, int>();
             
             foreach(char val in value.ToCharArray())
             {
-                if (!list.ContainsKey(val)) list[val] = 1;
-                else list[val] = list[val] + 1;
+                if (!dict.ContainsKey(val)) dict[val] = 1;
+                else dict[val] = dict[val] + 1;
             }
+            
+            StringBuilder sb = new StringBuilder();
 
-            return String.Join("", list.Select(x => $"{x.Key}{x.Value}"));
+            dict.Select(x => sb.Append($"{x.Key}{x.Value}"));
+
+            return sb.ToString();
             
             /* StringBuilder sb = new StringBuilder();
             
