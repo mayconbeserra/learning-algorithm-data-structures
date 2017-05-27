@@ -6,10 +6,16 @@ namespace Learning.DataStructures.ArraysAndStrings
     {
         public bool Check(string sentence)
         {
-            foreach(var val1 in sentence.ToCharArray())
-                foreach(var val2 in sentence
-                    .Substring(sentence.IndexOf(val1) + 1)
-                    .ToCharArray()) if (val1.Equals(val2)) return false;
+            bool[] set = new bool[256];
+
+            for(int i = 0; i < sentence.Length; i++)
+            {
+                int val = sentence[i];
+                if (set[val]) return false;
+
+                set[val] = true;
+            }
+
             return true;
         }
     }
