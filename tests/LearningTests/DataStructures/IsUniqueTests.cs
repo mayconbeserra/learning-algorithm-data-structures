@@ -16,7 +16,7 @@ namespace Learning.DataStructures.Tests
         [Theory]
         [InlineData("abcdefgh", true)]
         [InlineData("abcdefgha", false)]
-        [InlineData("z4", false)]
+        [InlineData("z4", true)]
         public void Check_Sentence_Is_Unique(string sentence, bool expectedResult)
         { 
             IsUnique entity = new IsUnique();

@@ -20,19 +20,13 @@ namespace Learning.DataStructures.ArraysAndStrings
             }
             
             StringBuilder sb = new StringBuilder();
-
-            dict.Select(x => sb.Append($"{x.Key}{x.Value}"));
-
-            return sb.ToString();
             
-            /* StringBuilder sb = new StringBuilder();
-            
-            foreach(var dict in list)
+            foreach(var entry in dict)
             {
-                sb.Append($"{dict.Key}{dict.Value}");
+                sb.Append($"{entry.Key}{entry.Value}");
             }
 
-            return sb.ToString(); */
+            return sb.ToString();
         }
     }
 }
