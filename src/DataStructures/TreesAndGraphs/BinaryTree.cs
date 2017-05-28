@@ -71,6 +71,27 @@ namespace Learning.DataStructures.TreesAndGraphs
             if (Right != null) Right.PrintInOrder();
         }
 
+        public bool IsBalanced()
+        {
+            return CheckHeight(this) != Int32.MinValue;
+        }
+
+        private int CheckHeight(BinaryTreeNode<T> root)
+        {
+            if (root == null) return -1;
+
+            int leftHeight = CheckHeight(root.Left);
+            if (leftHeight == int.MinValue) return int.MinValue;
+
+            int rightHeight = CheckHeight(root.Right);
+            if (rightHeight == int.MinValue) return int.MinValue;
+
+            int heightDiff = leftHeight - rightHeight;
+
+            if (Math.Abs(heightDiff) > 1) return int.MinValue;
+            else return Math.Max(leftHeight, rightHeight) + 1;
+        }
+
         public void PreOrder() 
         {
             Console.WriteLine(this.Value);
