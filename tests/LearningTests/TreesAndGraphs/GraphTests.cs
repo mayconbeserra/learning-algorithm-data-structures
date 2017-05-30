@@ -2,6 +2,7 @@ using System;
 using Xunit;
 using FluentAssertions;
 using Learning.DataStructures.TreesAndGraphs;
+using System.Linq;
 
 namespace Learning.DataStructures.TreesAndGraphs.Tests
 {
@@ -72,6 +73,46 @@ namespace Learning.DataStructures.TreesAndGraphs.Tests
             graph.AddDirectedEdge(dusseldorf, berlin);
 
             graph.HasPathBreadthFirst(berlin, munchen).Should().BeFalse();
+        }
+
+        [Theory]
+        [InlineData("A", "A", 0)]
+        [InlineData("A", "B", 1)]
+        [InlineData("A", "E", 2)]
+        [InlineData("A", "F", 2)]
+        public void It_Should_Search_ShortestPath_Between_Two_Nodes(string start, string end, int distance)
+        {
+            Graph<string> graph = new Graph<string>();
+
+            var A = graph.Add("A");
+            var B = graph.Add("B");
+            var C = graph.Add("C");
+            var D = graph.Add("D");
+            var E = graph.Add("E");
+            var F = graph.Add("F");
+            var G = graph.Add("G");
+            var H = graph.Add("H");
+
+            graph.AddDirectedEdge(A, B);
+            graph.AddDirectedEdge(A, G);
+            graph.AddDirectedEdge(A, D);
+
+            graph.AddDirectedEdge(B, E);
+            graph.AddDirectedEdge(B, F);
+
+            graph.AddDirectedEdge(E, G);
+
+            graph.AddDirectedEdge(F, D);
+            graph.AddDirectedEdge(F, C);
+
+            graph.AddDirectedEdge(C, H);
+
+            graph.ShortestPath
+            (
+                graph.NodeSet.FirstOrDefault(x => x.Data == start),
+                graph.NodeSet.FirstOrDefault(x => x.Data == end)
+            )
+            .Value.Should().Be(distance);
         }
     }
 }

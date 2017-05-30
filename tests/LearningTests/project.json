@@ -4,6 +4,7 @@
 
   "dependencies": {
     "DataStructures": { "target": "project" },
+    "Algorithms": { "target": "project"},
     "dotnet-test-xunit": "2.2.0-preview2-build1029",
     "FluentAssertions": "4.9.1",
     "Microsoft.DotNet.InternalAbstractions": "1.0.0",

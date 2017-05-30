@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Learning.DataStructures.TreesAndGraphs
 {
@@ -29,7 +30,7 @@ namespace Learning.DataStructures.TreesAndGraphs
         }
 
         // Depth First Search
-        public bool HasPathDFS(NodeGraph<T> source, NodeGraph<T> destination, HashSet<T> visited)
+        private bool HasPathDFS(NodeGraph<T> source, NodeGraph<T> destination, HashSet<T> visited)
         {
             if (visited.Contains(source.Data)) return false;
 
@@ -93,6 +94,32 @@ namespace Learning.DataStructures.TreesAndGraphs
             }
 
             return false;
+        }
+
+        public KeyValuePair<NodeGraph<string>, int> ShortestPath(NodeGraph<string> source, NodeGraph<string> target)
+        {
+            Dictionary<NodeGraph<string>, int> visited = new Dictionary<NodeGraph<string>, int>();
+            Queue<NodeGraph<string>> queue = new Queue<NodeGraph<string>>();
+
+            queue.Enqueue(source);
+
+            while(queue.Count > 0)
+            {
+                var currentNode = queue.Dequeue();
+
+                if (!visited.ContainsKey(currentNode)) visited.Add(currentNode, 0);
+
+                foreach (var child in currentNode.Neighbors)
+                {
+                    if (visited.ContainsKey(child)) continue;
+
+                    visited.Add(child, 0);
+                    visited[child] = visited[currentNode] + 1;
+                    queue.Enqueue(child);
+                }
+            }
+
+            return visited.FirstOrDefault(x => x.Key == target);
         }
     }
 

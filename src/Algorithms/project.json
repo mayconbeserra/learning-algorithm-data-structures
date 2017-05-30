@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "emitEntryPoint": true
+  },
+
+  "tools": {
+    "Microsoft.EntityFrameworkCore.Tools": { "version": "1.1.0-preview4-final" }
+  },
+
+  "frameworks": {
+    "netcoreapp1.1": {
+      "imports": "dnxcore50",
+      "dependencies": {
+        "Microsoft.NETCore.App": { "version": "1.1.0", "type": "platform" }
+      }
+    }
+  },
+
+  "tooling": {
+    "defaultNamespace": "Learning.Algorithms"
+  }
+}
